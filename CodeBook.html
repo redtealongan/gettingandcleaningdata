@@ -54,54 +54,305 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="codebook-for-the-tidy-dataset" class="section level1">
 <h1>CodeBook for the tidy dataset</h1>
-<p>describes the variables, the summarized data along with units, and any transformations or work that you performed to clean up the data</p>
 <div id="data-source" class="section level2">
 <h2>Data source</h2>
-<p>This dataset is derived from the “Human Activity Recognition Using Smartphones Data Set” which was originally made avaiable here: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+<p>This dataset is derived from the “Human Activity Recognition Using Smartphones Data Set”, downloadable from <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
 </div>
-<div id="feature-selection" class="section level2">
-<h2>Feature Selection</h2>
-<p>I refer you to the README and features.txt files in the original dataset to learn more about the feature selection for this dataset. And there you will find the follow description:</p>
-<p>The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix ‘t’ to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.</p>
-<p>Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).</p>
-<p>Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the ‘f’ to indicate frequency domain signals).</p>
-<p>The reasoning behind my selection of features is that the assignment explicitly states “Extracts only the measurements on the mean and standard deviation for each measurement.” To be complete, I included all variables having to do with mean or standard deviation.</p>
-<p>In short, for this derived dataset, these signals were used to estimate variables of the feature vector for each pattern:<br />‘-XYZ’ is used to denote 3-axial signals in the X, Y and Z directions.</p>
-<ul>
-<li>tBodyAcc-XYZ</li>
-<li>tGravityAcc-XYZ</li>
-<li>tBodyAccJerk-XYZ</li>
-<li>tBodyGyro-XYZ</li>
-<li>tBodyGyroJerk-XYZ</li>
-<li>tBodyAccMag</li>
-<li>tGravityAccMag</li>
-<li>tBodyAccJerkMag</li>
-<li>tBodyGyroMag</li>
-<li>tBodyGyroJerkMag</li>
-<li>fBodyAcc-XYZ</li>
-<li>fBodyAccJerk-XYZ</li>
-<li>fBodyGyro-XYZ</li>
-<li>fBodyAccMag</li>
-<li>fBodyAccJerkMag</li>
-<li>fBodyGyroMag</li>
-<li>fBodyGyroJerkMag</li>
-</ul>
-<p>The set of variables that were estimated (and kept for this assignment) from these signals are:</p>
-<ul>
-<li>mean(): Mean value</li>
-<li>std(): Standard deviation</li>
-</ul>
-<p>Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:</p>
-<ul>
-<li>gravityMean</li>
-<li>tBodyAccMean</li>
-<li>tBodyAccJerkMean</li>
-<li>tBodyGyroMean</li>
-<li>tBodyGyroJerkMean</li>
-</ul>
-<p>Other estimates have been removed for the purpose of this excercise.</p>
-<p>Note: features are normalized and bounded within [-1,1].</p>
-<p>The resulting variable names are of the following form: tbodyaccmeanx, which means the mean value of tBodyAcc-XYZ.</p>
+<div id="variables" class="section level2">
+<h2>Variables</h2>
+<p>This tidy dataset contains the average of each variable for each subject and each activity. Here are the variables and their units.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">VARIABLE_NAME</th>
+<th align="left">UNIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Subject</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">Activity</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccmeanX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccmeanY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccmeanZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccstdX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccstdY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccstdZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tGravityAccmeanX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tGravityAccmeanY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tGravityAccmeanZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tGravityAccstdX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tGravityAccstdY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tGravityAccstdZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccJerkmeanX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccJerkmeanY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccJerkmeanZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccJerkstdX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccJerkstdY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccJerkstdZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyromeanX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyromeanY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyromeanZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyrostdX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyrostdY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyrostdZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyroJerkmeanX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyroJerkmeanY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyroJerkmeanZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyroJerkstdX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyroJerkstdY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyroJerkstdZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccMagmean)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccMagstd)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tGravityAccMagmean)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tGravityAccMagstd)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyAccJerkMagmean)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyAccJerkMagstd)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyroMagmean)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyroMagstd)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(tBodyGyroJerkMagmean)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(tBodyGyroJerkMagstd)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccmeanX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccmeanY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccmeanZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccstdX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccstdY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccstdZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccJerkmeanX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccJerkmeanY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccJerkmeanZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccJerkstdX)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccJerkstdY)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccJerkstdZ)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyGyromeanX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyGyromeanY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyGyromeanZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyGyrostdX)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyGyrostdY)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyGyrostdZ)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyAccMagmean)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyAccMagstd)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyBodyAccJerkMagmean)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyBodyAccJerkMagstd)</td>
+<td align="left">standard gravity units ‘g’</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyBodyGyroMagmean)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyBodyGyroMagstd)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="odd">
+<td align="left">mean(fBodyBodyGyroJerkMagmean)</td>
+<td align="left">radians/second</td>
+</tr>
+<tr class="even">
+<td align="left">mean(fBodyBodyGyroJerkMagstd)</td>
+<td align="left">radians/second</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="work-performed-to-clean-up-the-data" class="section level2">
+<h2>Work Performed to Clean Up the Data</h2>
+<ol style="list-style-type: decimal">
+<li>Merged the training and the test sets to create one data set.</li>
+<li>Extracted only the measurements on the mean and standard deviation for each measurement.</li>
+<li>Used descriptive activity names (e.g. WALKING) to name the activities in the data set</li>
+<li>Appropriately labelled the data set with descriptive variable names.</li>
+<li>From the data set in step 4, created a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
+</ol>
 </div>
 </div>
 
