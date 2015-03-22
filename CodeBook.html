@@ -52,55 +52,57 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 
-<div id="contents" class="section level2">
-<h2>Contents</h2>
+<div id="codebook-for-the-tidy-dataset" class="section level1">
+<h1>CodeBook for the tidy dataset</h1>
+<p>describes the variables, the summarized data along with units, and any transformations or work that you performed to clean up the data</p>
+<div id="data-source" class="section level2">
+<h2>Data source</h2>
+<p>This dataset is derived from the “Human Activity Recognition Using Smartphones Data Set” which was originally made avaiable here: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+</div>
+<div id="feature-selection" class="section level2">
+<h2>Feature Selection</h2>
+<p>I refer you to the README and features.txt files in the original dataset to learn more about the feature selection for this dataset. And there you will find the follow description:</p>
+<p>The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix ‘t’ to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz.</p>
+<p>Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag).</p>
+<p>Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the ‘f’ to indicate frequency domain signals).</p>
+<p>The reasoning behind my selection of features is that the assignment explicitly states “Extracts only the measurements on the mean and standard deviation for each measurement.” To be complete, I included all variables having to do with mean or standard deviation.</p>
+<p>In short, for this derived dataset, these signals were used to estimate variables of the feature vector for each pattern:<br />‘-XYZ’ is used to denote 3-axial signals in the X, Y and Z directions.</p>
 <ul>
-<li>Introduction</li>
-<li>About the Original Dataset</li>
-<li>About the Tidy Dataset</li>
-<li>How to Run the Script</li>
-<li>About the Code Book</li>
+<li>tBodyAcc-XYZ</li>
+<li>tGravityAcc-XYZ</li>
+<li>tBodyAccJerk-XYZ</li>
+<li>tBodyGyro-XYZ</li>
+<li>tBodyGyroJerk-XYZ</li>
+<li>tBodyAccMag</li>
+<li>tGravityAccMag</li>
+<li>tBodyAccJerkMag</li>
+<li>tBodyGyroMag</li>
+<li>tBodyGyroJerkMag</li>
+<li>fBodyAcc-XYZ</li>
+<li>fBodyAccJerk-XYZ</li>
+<li>fBodyGyro-XYZ</li>
+<li>fBodyAccMag</li>
+<li>fBodyAccJerkMag</li>
+<li>fBodyGyroMag</li>
+<li>fBodyGyroJerkMag</li>
 </ul>
-</div>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>This repository contains my work for the “Getting and Cleaning Data” course assignment.</p>
-</div>
-<div id="about-the-original-dataset" class="section level2">
-<h2>About the Original Dataset</h2>
-<p>The original datasets represent data collected from the accelerometers from the Samsung Galaxy S smartphone, downloaded from <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+<p>The set of variables that were estimated (and kept for this assignment) from these signals are:</p>
 <ul>
-<li>The “X_test.txt” file contains the unlabelled data for the “test” dataset.</li>
-<li>The “Y_test.txt” file contains the Activity labels for the “test” dataset.</li>
-<li><p>The “subject_test.txt” file contains the subjects for the “test” dataset.</p></li>
-<li>The “X_train.txt file contains the unlabelled data for the”train&quot; dataset.</li>
-<li>The “Y_train.txt” file contains the Activity labels for the “train” dataset.</li>
-<li><p>The “subject_train.txt” file contains the subjects for the “train” dataset.</p></li>
+<li>mean(): Mean value</li>
+<li>std(): Standard deviation</li>
 </ul>
+<p>Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:</p>
+<ul>
+<li>gravityMean</li>
+<li>tBodyAccMean</li>
+<li>tBodyAccJerkMean</li>
+<li>tBodyGyroMean</li>
+<li>tBodyGyroJerkMean</li>
+</ul>
+<p>Other estimates have been removed for the purpose of this excercise.</p>
+<p>Note: features are normalized and bounded within [-1,1].</p>
+<p>The resulting variable names are of the following form: tbodyaccmeanx, which means the mean value of tBodyAcc-XYZ.</p>
 </div>
-<div id="about-the-tidy-dataset" class="section level2">
-<h2>About the Tidy Dataset</h2>
-<p>For the assignment, I created a tidy dataset from the original dataset. The dataset has been stored in the “tidydata.txt” file.</p>
-<ol style="list-style-type: decimal">
-<li>Merged the training and the test sets to create one data set.</li>
-<li>Extracted only the measurements on the mean and standard deviation for each measurement.</li>
-<li>Used descriptive activity names (e.g. WALKING) to name the activities in the data set</li>
-<li>Appropriately labelled the data set with descriptive variable names.</li>
-<li>From the data set in step 4, created a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
-</ol>
-<p>The tidy dataset can be created using the “run_analysis.R” script.</p>
-</div>
-<div id="how-to-run-the-script" class="section level2">
-<h2>How to Run the Script</h2>
-<ol style="list-style-type: decimal">
-<li>Extract the zip of the original dataset into your current working directory.</li>
-<li>Navigate to the “UCI HAR Dataset” folder, and set it as your current working directory.</li>
-<li>Run the “run_analysis.R” script</li>
-</ol>
-</div>
-<div id="about-the-code-book" class="section level2">
-<h2>About the Code Book</h2>
-<p>The codebook describes the variables, the data, and any transformations or work that was performed to clean up the data. To read it, open “CodeBook.md”.</p>
 </div>
 
 
