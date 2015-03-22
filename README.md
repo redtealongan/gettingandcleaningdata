@@ -20,7 +20,6 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 * The "X_test.txt" file contains the unlabelled data for the "test" dataset.
 * The "Y_test.txt" file contains the Activity labels for the "test" dataset.
 * The "subject_test.txt" file contains the subjects for the "test" dataset.
-
 * The "X_train.txt file contains the unlabelled data for the "train" dataset.
 * The "Y_train.txt" file contains the Activity labels for the "train" dataset.
 * The "subject_train.txt" file contains the subjects for the "train" dataset.
